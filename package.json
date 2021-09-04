@@ -1,5 +1,5 @@
 {
-  "name": "react-spacer",
+  "name": "react-styled-spacer",
   "version": "1.0.0",
   "description": "Spacer component for margins in react and react-native",
   "main": "dist/index.js",
@@ -11,17 +11,18 @@
   "files": [
     "dist"
   ],
-  "homepage": "https://github.com/Saschamz/react-spacer",
+  "homepage": "https://github.com/Saschamz/react-styled-spacer",
   "repository": {
     "type": "git",
-    "url": "git@github.com:Saschamz/react-spacer.git"
+    "url": "git@github.com:Saschamz/react-styled-spacer.git"
   },
   "keywords": [
     "react",
     "react-native",
     "react-native-web",
     "spacer",
-    "space"
+    "space",
+    "styled-components"
   ],
   "author": "Sascha Ringström",
   "license": "ISC",
