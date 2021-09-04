@@ -10,7 +10,9 @@ function endsWith(value: string, strings: string[]) {
 }
 
 function getSuffix(space: string | number) {
-  if (!space || endsWith(space.toString(), ['rem', 'em', 'vh', 'vw', 'px'])) {
+  const hasSuffix = endsWith(space.toString(), ['rem', 'em', 'vh', 'vw', 'px'])
+
+  if (hasSuffix) {
     return space
   }
 
@@ -18,8 +20,8 @@ function getSuffix(space: string | number) {
 }
 
 export const Space = styled.View<SpacerProps>`
-  height: ${({ h, theme }) => getSuffix(theme?.spacers?.[h] || h)};
-  width: ${({ w, theme }) => getSuffix(theme?.spacers?.[w] || w)};
+  height: ${({ h, theme }) => getSuffix(theme?.spacers?.[h] || h || 0)};
+  width: ${({ w, theme }) => getSuffix(theme?.spacers?.[w] || w || 0)};
   ${({ grow }) => grow && `flex-grow: ${grow};`}
   ${({ shrink }) => shrink && `flex-shrink: ${shrink};`}
   ${({ theme }) => theme?.spacers?.debug && debugStyles}
