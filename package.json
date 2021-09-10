@@ -26,17 +26,15 @@
   ],
   "author": "Sascha Ringström",
   "license": "ISC",
+  "peerDependencies": {
+    "react": "*"
+  },
   "dependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-native": "^0.65.1",
     "react-native-web": "^0.17.1",
     "styled-components": "^5.3.1"
   },
   "devDependencies": {
     "@types/react": "^17.0.19",
-    "@types/react-dom": "^17.0.9",
-    "@types/react-native": "^0.64.13",
     "typescript": "^4.4.2"
   }
 }
