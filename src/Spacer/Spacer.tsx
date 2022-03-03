@@ -12,10 +12,7 @@ export type SpacerProps = {
   shrink?: number | string
 }
 
-const Spacer: FC<SpacerProps & { children?: any[] }> = ({
-  children,
-  ...spacerProps
-}) => {
+const Spacer: FC<SpacerProps & { children?: any[] }> = ({ children, ...spacerProps }) => {
   const isConfigured = spacerProps.w || spacerProps.h
 
   if (!isConfigured) {
@@ -25,9 +22,10 @@ const Spacer: FC<SpacerProps & { children?: any[] }> = ({
   if (children) {
     const spacedChildren = children.reduce((acc, curr, index, arr) => {
       const isLastElement = index === arr.length - 1
+      const isOnlyElement = arr.length === 1
       acc.push(curr)
-      if (!isLastElement) {
-        acc.push(<S.Space {...spacerProps} />)
+      if (!isLastElement && !isOnlyElement) {
+        acc.push(<S.Space key={index.toString()} {...spacerProps} />)
       }
       return acc
     }, [])

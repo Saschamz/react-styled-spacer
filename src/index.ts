@@ -1,1 +1,5 @@
-export { default } from './Spacer'
+import Spacer, { SpacerProps } from './Spacer'
+
+export { SpacerProps }
+
+export default Spacer
