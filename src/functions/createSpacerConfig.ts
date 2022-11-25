@@ -8,13 +8,11 @@ export interface CreateSpacerConfigParams extends SpacerConfig {
   custom: Record<string, string | number>
 }
 
-export interface SpacerProps {
-  /** width */
-  w?: number | string
-  /** height */
-  h?: number | string
-  /** flex-grow */
-  grow?: number | string
-  /** flex-shrink */
-  shrink?: number | string
-}
+const createSpacerConfig = ({ custom = {}, ...config }: CreateSpacerConfigParams) => ({
+  spacers: {
+    ...config,
+    ...custom,
+  },
+})
+
+export default createSpacerConfig

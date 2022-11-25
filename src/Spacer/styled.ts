@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components/native'
-import { SpacerProps } from '../types'
+import { SpacerProps } from './Spacer'
 
 const debugStyles = css`
   background: hotpink;
