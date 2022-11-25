@@ -1,16 +1,6 @@
 import React, { FC } from 'react'
+import { SpacerProps } from '../types'
 import * as S from './styled'
-
-export type SpacerProps = {
-  /** width */
-  w?: number | string
-  /** height */
-  h?: number | string
-  /** flex-grow */
-  grow?: number | string
-  /** flex-shrink */
-  shrink?: number | string
-}
 
 const Spacer: FC<SpacerProps & { children?: any[] }> = ({ children, ...spacerProps }) => {
   const isConfigured = spacerProps.w || spacerProps.h

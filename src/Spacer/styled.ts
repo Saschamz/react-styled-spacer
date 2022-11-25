@@ -1,16 +1,16 @@
 import styled, { css } from 'styled-components/native'
-import { SpacerProps } from './Spacer'
+import { SpacerProps } from '../types'
 
 const debugStyles = css`
   background: hotpink;
 `
 
-function endsWith(value: string, strings: string[]) {
-  return strings.some((s) => value.endsWith(s))
-}
+const endsWith = (value: string, strings: string[]) => strings.some(s => value.endsWith(s))
 
-function getSuffix(space: string | number) {
-  const hasSuffix = endsWith(space.toString(), ['rem', 'em', 'vh', 'vw', 'px'])
+const acceptableSuffixes = ['rem', 'em', 'vh', 'vw', 'px']
+
+const getSuffix = (space: string | number) => {
+  const hasSuffix = endsWith(space.toString(), acceptableSuffixes)
 
   if (hasSuffix) {
     return space
@@ -19,9 +19,19 @@ function getSuffix(space: string | number) {
   return `${space}px`
 }
 
+const getDefaultSize = (theme: any) => (theme?.spacers?.debug ? 10 : 0)
+
+const getHeight = (theme: any, h: any) =>
+  theme?.spacers?.[h] ?? h ?? theme?.spacers?.default ?? getDefaultSize(theme)
+
+const getWidth = (theme: any, w: any) =>
+  theme?.spacers?.[w] ?? w ?? theme?.spacers?.default ?? getDefaultSize(theme)
+
+const getMultiplier = (theme: any) => theme?.spacers?.multiplier ?? 1
+
 export const Space = styled.View<SpacerProps>`
-  height: ${({ h, theme }) => getSuffix(theme?.spacers?.[h] || h || 0)};
-  width: ${({ w, theme }) => getSuffix(theme?.spacers?.[w] || w || 0)};
+  height: ${({ h, theme }) => getSuffix(getHeight(theme, h) * getMultiplier(theme))};
+  width: ${({ w, theme }) => getSuffix(getWidth(theme, w) * getMultiplier(theme))};
   ${({ grow }) => grow && `flex-grow: ${grow};`}
   ${({ shrink }) => shrink && `flex-shrink: ${shrink};`}
   ${({ theme }) => theme?.spacers?.debug && debugStyles}
