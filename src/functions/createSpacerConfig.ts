@@ -5,7 +5,7 @@ export interface SpacerConfig {
 }
 
 export interface CreateSpacerConfigParams extends SpacerConfig {
-  custom: Record<string, string | number>
+  custom?: Record<string, string | number>
 }
 
 const createSpacerConfig = ({ custom = {}, ...config }: CreateSpacerConfigParams) => ({

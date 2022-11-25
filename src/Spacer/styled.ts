@@ -5,18 +5,21 @@ const debugStyles = css`
   background: hotpink;
 `
 
-const endsWith = (value: string, strings: string[]) => strings.some(s => value.endsWith(s))
+interface Measure {
+  value: number
+  suffix: string
+}
 
 const acceptableSuffixes = ['rem', 'em', 'vh', 'vw', 'px']
 
-const getSuffix = (space: string | number) => {
-  const hasSuffix = endsWith(space.toString(), acceptableSuffixes)
+const createMeasure = (input: number | string): Measure => {
+  const value = +input.toString().replace(/\D.+/g, '')
+  const suffix = input.toString().replace(/[0-9]/g, '')
 
-  if (hasSuffix) {
-    return space
+  return {
+    value,
+    suffix: acceptableSuffixes.includes(suffix) ? suffix : 'px',
   }
-
-  return `${space}px`
 }
 
 const getDefaultSize = (theme: any) => (theme?.spacers?.debug ? 10 : 0)
@@ -29,9 +32,14 @@ const getWidth = (theme: any, w: any) =>
 
 const getMultiplier = (theme: any) => theme?.spacers?.multiplier ?? 1
 
+const getRoundedValue = (input: number | string, multiplier: number) => {
+  const measure = createMeasure(input)
+  return `${Math.round(measure.value * multiplier)}${measure.suffix}`
+}
+
 export const Space = styled.View<SpacerProps>`
-  height: ${({ h, theme }) => getSuffix(getHeight(theme, h) * getMultiplier(theme))};
-  width: ${({ w, theme }) => getSuffix(getWidth(theme, w) * getMultiplier(theme))};
+  height: ${({ h, theme }) => getRoundedValue(getHeight(theme, h), getMultiplier(theme))};
+  width: ${({ w, theme }) => getRoundedValue(getWidth(theme, w), getMultiplier(theme))};
   ${({ grow }) => grow && `flex-grow: ${grow};`}
   ${({ shrink }) => shrink && `flex-shrink: ${shrink};`}
   ${({ theme }) => theme?.spacers?.debug && debugStyles}
