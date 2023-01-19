@@ -44,3 +44,14 @@ export const Space = styled.View<SpacerProps>`
   ${({ shrink }) => shrink && `flex-shrink: ${shrink};`}
   ${({ theme }) => theme?.spacers?.debug && debugStyles}
 `
+
+export const SpaceAround = styled.View<SpacerProps>`
+  margin: ${({ w, h, theme }) => {
+    const height = getRoundedValue(getHeight(theme, h), getMultiplier(theme))
+    const width = getRoundedValue(getWidth(theme, w), getMultiplier(theme))
+    return `${height} ${width}`
+  }};
+  ${({ grow }) => grow && `flex-grow: ${grow};`}
+  ${({ shrink }) => shrink && `flex-shrink: ${shrink};`}
+  ${({ theme }) => theme?.spacers?.debug && debugStyles}
+`

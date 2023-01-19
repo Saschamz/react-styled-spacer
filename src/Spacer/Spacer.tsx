@@ -10,6 +10,8 @@ export interface SpacerProps {
   grow?: number | string
   /** flex-shrink */
   shrink?: number | string
+  /* spaces around children */
+  spaceAround?: boolean
 }
 
 const Spacer: FC<SpacerProps & { children?: any[] }> = ({ children, ...spacerProps }) => {
@@ -17,6 +19,10 @@ const Spacer: FC<SpacerProps & { children?: any[] }> = ({ children, ...spacerPro
 
   if (!isConfigured) {
     return null
+  }
+
+  if (spacerProps.spaceAround) {
+    return <S.SpaceAround {...spacerProps}>{children}</S.SpaceAround>
   }
 
   if (children) {
