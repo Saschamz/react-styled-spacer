@@ -1,0 +1,9 @@
+# OSX
+.DS_Store
+
+# Libraries
+node_modules
+
+# Build
+dist
+example/**/*

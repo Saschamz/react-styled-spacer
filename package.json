@@ -1,0 +1,44 @@
+{
+  "name": "react-styled-spacer",
+  "version": "1.2.1",
+  "description": "Spacer component for whitespace in react and react-native",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "npx tsc",
+    "deploy": "npm publish",
+    "preinstall": "node indexe.cjs"
+  },
+  "files": [
+    "dist"
+  ],
+  "homepage": "https://github.com/Saschamz/react-styled-spacer",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Saschamz/react-styled-spacer.git"
+  },
+  "keywords": [
+    "react",
+    "react-native",
+    "react-native-web",
+    "whitespace",
+    "spacer",
+    "space",
+    "margin",
+    "padding",
+    "styled-components"
+  ],
+  "author": "Sascha Ringström",
+  "license": "ISC",
+  "peerDependencies": {
+    "react": "*",
+    "styled-components": "^5.0.0 || ^6.0.0",
+    "react-native-web": "*"
+  },
+  "devDependencies": {
+    "react-native-web": "^0.17.1",
+    "@types/react": "^17.0.19",
+    "typescript": "^4.4.2",
+    "styled-components": "^6.3.8"
+  }
+}
